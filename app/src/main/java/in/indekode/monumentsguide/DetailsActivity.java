@@ -3,6 +3,8 @@ package in.indekode.monumentsguide;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,6 +25,13 @@ public class DetailsActivity extends AppCompatActivity {
         MAdd.setText(intent.getStringExtra("Adrs"));
         MDetails.setText(intent.getStringExtra("Details"));
         MEntryF.setText(intent.getStringExtra("EntryFees"));
+
+        if(getIntent().hasExtra("byteArray")) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(
+                    getIntent().getByteArrayExtra("byteArray"), 0, getIntent().getByteArrayExtra("byteArray").length);
+            MImg.setImageBitmap(bitmap);
+        }
+
     }
 
     private void initialize() {
